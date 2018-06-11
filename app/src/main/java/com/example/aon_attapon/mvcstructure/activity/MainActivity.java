@@ -1,7 +1,9 @@
-package com.example.aon_attapon.mvcstructure;
+package com.example.aon_attapon.mvcstructure.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.aon_attapon.mvcstructure.R;
 
 public class MainActivity extends AppCompatActivity {
 
