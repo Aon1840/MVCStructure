@@ -40,6 +40,13 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.contentContainer, MainFragment.newInstace(123), "MainFragment")
                     .commit();
+
+            SecondFragment secondFragment = SecondFragment.newInstance();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.contentContainer,
+                            secondFragment,"SecondFragment")
+                    .detach(secondFragment)
+                    .commit();
         }
     }
 
@@ -48,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
         if (savedInstanceState == null) {
             MainFragment fragment = (MainFragment) getSupportFragmentManager().findFragmentByTag("MainFragment");
-            fragment.setTvHelloText("Woo Hoooooo");
+            fragment.setTvHelloText("Woo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\nWoo Hoooooo\n");
         }
     }
 
@@ -62,6 +69,34 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_first_tab: {
+                MainFragment mainFragment = (MainFragment)
+                        getSupportFragmentManager().findFragmentByTag("MainFragment");
+                SecondFragment secondFragment = (SecondFragment)
+                        getSupportFragmentManager().findFragmentByTag("SecondFragment");
+
+                getSupportFragmentManager().beginTransaction()
+                        .attach(mainFragment)
+                        .detach(secondFragment)
+                        .commit();
+
+                return true;
+            }
+
+            case R.id.action_second_tab: {
+                MainFragment mainFragment = (MainFragment)
+                        getSupportFragmentManager().findFragmentByTag("MainFragment");
+                SecondFragment secondFragment = (SecondFragment)
+                        getSupportFragmentManager().findFragmentByTag("SecondFragment");
+
+                getSupportFragmentManager().beginTransaction()
+                        .attach(secondFragment)
+                        .detach(mainFragment)
+                        .commit();
+
+                return true;
+            }
+
             case R.id.action_second_fragment:
 
                 Fragment fragment = getSupportFragmentManager()
