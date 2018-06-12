@@ -7,12 +7,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.aon_attapon.mvcstructure.R;
 
 public class MainFragment extends Fragment {
 
+    TextView tvHello;
     int someVar;
+    int x,y,z;
 
     public static MainFragment newInstace(int someVar){
         MainFragment fragment = new MainFragment();
@@ -34,7 +37,32 @@ public class MainFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        initInstance(rootView);
 
         return rootView;
+    }
+
+    private void initInstance(View rootView) {
+        //findViewById here
+
+        tvHello = (TextView) rootView.findViewById(R.id.tvHello);
+    }
+
+    public void setTvHelloText(String text){
+        tvHello.setText(text);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //save state here
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (savedInstanceState != null){
+            //restore state here
+        }
     }
 }
