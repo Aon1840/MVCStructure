@@ -4,6 +4,8 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.aon_attapon.mvcstructure.R;
@@ -45,5 +47,22 @@ public class MainActivity extends AppCompatActivity {
             MainFragment fragment = (MainFragment) getSupportFragmentManager().findFragmentByTag("MainFragment");
             fragment.setTvHelloText("Woo Hoooooo");
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_fragment,menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_second_fragment:
+                Toast.makeText(MainActivity.this, "Second Fragment", Toast.LENGTH_LONG).show();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
