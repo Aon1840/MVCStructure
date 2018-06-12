@@ -2,6 +2,7 @@ package com.example.aon_attapon.mvcstructure.activity;
 
 import android.os.Build;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.aon_attapon.mvcstructure.R;
 import com.example.aon_attapon.mvcstructure.fragment.MainFragment;
+import com.example.aon_attapon.mvcstructure.fragment.SecondFragment;
 import com.example.aon_attapon.mvcstructure.util.ScreenUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -51,15 +53,27 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_fragment,menu);
+        getMenuInflater().inflate(R.menu.menu_fragment, menu);
 
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_second_fragment:
+
+                Fragment fragment = getSupportFragmentManager()
+                        .findFragmentById(R.id.contentContainer);
+
+                if (fragment instanceof SecondFragment == false) {
+
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.contentContainer, SecondFragment.newInstance())
+                            .addToBackStack(null)
+                            .commit();
+                }
+
                 Toast.makeText(MainActivity.this, "Second Fragment", Toast.LENGTH_LONG).show();
                 return true;
         }
